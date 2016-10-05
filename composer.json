@@ -1,9 +1,9 @@
 {
-  "name": "benjaminmedia/wp-wa-oauth",
-  "description": "Log in users from the WA platform",
+  "name": "benjaminmedia/wp-wype-reset-password",
+  "description": "Adds reset password page to Wype services",
   "type": "wordpress-plugin",
   "keywords": ["wordpress", "plugin"],
-  "homepage": "https://github.com/BenjaminMedia/wp-wa-oauth",
+  "homepage": "https://github.com/BenjaminMedia/wp-wype-reset-password",
   "repositories":[
     {
       "type": "composer",
@@ -23,12 +23,12 @@
     }
   ],
   "support": {
-    "issues": "https://github.com/BenjaminMedia/wp-wa-oauth/issues",
-    "source": "https://github.com/BenjaminMedia/wp-wa-oauth"
+    "issues": "https://github.com/BenjaminMedia/wp-wype-reset-password/issues",
+    "source": "https://github.com/BenjaminMedia/wp-wype-reset-password"
   },
   "autoload": {
     "psr-4": {
-      "Bonnier\\WP\\WaOauth\\": "src/Bonnier/WP/WaOauth/"
+      "Bonnier\\WP\\WypeResetpassword\\": "src/Bonnier/WP/WypeResetpassword/"
     }
   },
   "require": {

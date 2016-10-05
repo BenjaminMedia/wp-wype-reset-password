@@ -154,7 +154,7 @@ class ResetPasswordPage
     }
 
     private static function isBMDUser($email, $provider) {
-        
+
         $client = new Client(['base_uri' => 'https://order.bm-data.com/']);
 
         $args = array(

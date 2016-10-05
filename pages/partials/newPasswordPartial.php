@@ -1,5 +1,7 @@
 <?php
 
+use Bonnier\WP\WypeResetpassword\Plugin;
+
 echo "
     <body>
         <div class=\"jumbotron vertical-center\">

@@ -46,7 +46,7 @@ class SettingsPage
             'type' => 'text',
             'name' => 'Request link button text'
         ],
-        'get_text_if_in_system_mail_sent' => [
+        'text_if_in_system_mail_sent' => [
             'type' => 'text',
             'name' => 'Mail sent if user in system text'
         ],
@@ -58,7 +58,7 @@ class SettingsPage
             'type' => 'text',
             'name' => 'New password page button text'
         ],
-        'get_text_password_resat' => [
+        'text_password_resat' => [
             'type' => 'text',
             'name' => 'Password was resat text'
         ],
@@ -266,9 +266,18 @@ class SettingsPage
         return $this->get_setting_value('new_text_new_password', $locale) ?: 'Reset Password';
     }
 
-    public function get_submit_new_password_button($locale = null)
+    public function get_text_submit_new_password_button($locale = null)
     {
         return $this->get_setting_value('submit_new_password_button', $locale) ?: 'Submit';
+    }
+
+    public function get_text_if_in_system_mail_sent($locale = null) {
+        return $this->get_setting_value('text_if_in_system_mail_sent', $locale) ?: 'If the email is in our system it will shortly receive instructions by email';
+    }
+
+    public function get_text_password_resat($locale = null)
+    {
+        return $this->get_setting_value('text_password_resat', $locale) ?: 'Password was resat.';
     }
 
     private function enable_language_fields()

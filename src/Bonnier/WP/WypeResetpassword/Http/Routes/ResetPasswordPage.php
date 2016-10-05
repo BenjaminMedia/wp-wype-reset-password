@@ -84,7 +84,7 @@ class ResetPasswordPage
         if(
             isset($_POST['email']) && !empty($_POST['email'])
             && isset($_POST['provider']) && !empty($_POST['provider'])
-            && in_array($_POST['provider'], self::$providers)
+            && array_key_exists($_POST['provider'], self::$providers)
         ) {
             global $wpdb;
             $table_name = $wpdb->prefix . 'wype_password_reset_tokens';
@@ -148,13 +148,13 @@ class ResetPasswordPage
             )
         );
 
-        $response = $client->post('/v2/sandboxb0463d454b1b4efea98917c61be7a6bc.mailgun.org/messages', $args);
+        $response = $client->post('v3/mg.wype.dk/messages', $args);
 
         return true;
     }
 
     private static function isBMDUser($email, $provider) {
-
+        
         $client = new Client(['base_uri' => 'https://order.bm-data.com/']);
 
         $args = array(

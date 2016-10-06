@@ -62,6 +62,18 @@ class SettingsPage
             'type' => 'text',
             'name' => 'Password was resat text'
         ],
+        'text_email_address_placeholder' => [
+            'type' => 'text',
+            'name' => 'Email Address Input Placeholder'
+        ],
+        'text_password_placeholder' => [
+            'type' => 'text',
+            'name' => 'Password Input Placeholder'
+        ],
+        'wype_page_title' => [
+            'type' => 'text',
+            'name' => 'Page Title'
+        ],
     ];
 
     /**
@@ -253,7 +265,7 @@ class SettingsPage
 
     public function get_text_request_reset_link($locale = null)
     {
-        return $this->get_setting_value('text_request_reset_link', $locale) ?: 'Request reset link';
+        return $this->get_setting_value('wype_text_request_reset_link', $locale) ?: 'Request reset link';
     }
 
     public function get_text_request_reset_link_button($locale = null)
@@ -279,6 +291,22 @@ class SettingsPage
     {
         return $this->get_setting_value('text_password_resat', $locale) ?: 'Password was resat.';
     }
+
+    public function get_text_email_address_placeholder($locale = null)
+    {
+        return $this->get_setting_value('text_email_address_placeholder', $locale) ?: 'Email Address';
+    }
+
+    public function get_text_password_placeholder($locale = null)
+    {
+        return $this->get_setting_value('text_password_placeholder', $locale) ?: 'Password';
+    }
+
+    public function get_page_title($locale = null)
+    {
+        return $this->get_setting_value('wype_page_title', $locale) ?: 'Password Reset';
+    }
+
 
     private function enable_language_fields()
     {

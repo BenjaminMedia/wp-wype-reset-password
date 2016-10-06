@@ -9,13 +9,12 @@ echo "
                 <form class=\"form-signin\" action=\"\" method=\"post\">
                     <h2 class=\"form-signin-heading\">" . Plugin::instance()->settings->get_text_request_reset_link() . "</h2>
                     
-                    <input type=\"email\" name=\"email\" id=\"email\" class=\"form-control\" placeholder=\"Email address\"> 
+                    <input type=\"email\" name=\"email\" id=\"email\" class=\"form-control\" placeholder=\"".Plugin::instance()->settings->get_text_email_address_placeholder()."\"> 
                     
                     </br>
                     
                     <label class=\"checkbox-inline\"><input name=\"provider\" type=\"radio\" value=\"plenti\"> Plenti</label>
                     <label class=\"checkbox-inline\"><input name=\"provider\" type=\"radio\" value=\"tdc\"> TDC</label>
-                    <label class=\"checkbox-inline\"><input name=\"provider\" type=\"radio\" value=\"telmore\"> Telmore</label>
                     
                     </br></br>
                     

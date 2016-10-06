@@ -9,7 +9,7 @@ echo "
                 <form class=\"form-signin\" action=\"\" method=\"post\">
                     <h2 class=\"form-signin-heading\">" . Plugin::instance()->settings->get_text_new_password() . "</h2>
                     
-                    <input type=\"password\" name=\"password\" id=\"password\" class=\"form-control\" placeholder=\"Password\">
+                    <input type=\"password\" name=\"password\" id=\"password\" class=\"form-control\" placeholder=\"".Plugin::instance()->settings->get_text_password_placeholder()."\">
                     
                     </br>
                     

@@ -39,6 +39,10 @@ class ResetPasswordPage
         add_action( 'template_redirect', function() {
 
             if ( strtok($_SERVER['REQUEST_URI'], '?') === self::PAGE_URI ) {
+
+                // Prevent WordPress returning 404 when loading the page
+                header("HTTP/1.1 200 OK");
+
                 add_filter( 'template_include', function() {
                     return $this->plugin->page_dir . self::PAGE_FILE;
                 });

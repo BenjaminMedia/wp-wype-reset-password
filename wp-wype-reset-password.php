@@ -1,10 +1,10 @@
 <?php
 /**
- * Plugin Name: Bonnier Wype ResetPassword
+ * Plugin Name: Bonnier Wype Reset Password
  * Version: 1.0.0
- * Plugin URI: https://github.com/BenjaminMedia/wp-wype-resetpassword
+ * Plugin URI: https://github.com/BenjaminMedia/wp-wype-reset-password
  * Description: This plugin allows users on to reset password on a Wype site.
- * Author: Bonnier - Alf Henderson & John
+ * Author: Bonnier - Nicklas Frank
  * License: GPL v3
  */
 

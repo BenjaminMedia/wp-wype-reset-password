@@ -23,7 +23,7 @@ class Client
 
     public function get($path, Array $options = [])
     {
-        $request = wp_remote_get($this->buildUri($path), array_merge(self::DEFAULT_OPTIONS, $options));
+        $request = wp_remote_get($this->buildUri($path, $options['body']), array_merge(self::DEFAULT_OPTIONS, $options));
 
         return new HttpResponse($request);
     }
@@ -35,9 +35,15 @@ class Client
         return new HttpResponse($request);
     }
 
-    private function buildUri($path)
+    private function buildUri($path, $params = null)
     {
-        return rtrim($this->baseUri, '/') . '/' . ltrim($path, '/');
+        $requestParams = '';
+
+        if($params !== null ) {
+            $requestParams .= '?' . build_query($params);
+        }
+
+        return rtrim($this->baseUri, '/') . '/' . ltrim($path, '/') . $requestParams;
     }
 
 }

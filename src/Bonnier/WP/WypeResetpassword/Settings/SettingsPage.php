@@ -235,7 +235,7 @@ class SettingsPage
 
     public function get_bp_language($locale = null)
     {
-        return $this->get_setting_value('get_bp_language', $locale) ?: 'Something went wrong.';
+        return $this->get_setting_value('bp_language', $locale) ?: 'Something went wrong.';
     }
 
     public function get_email_service_key($locale = null)

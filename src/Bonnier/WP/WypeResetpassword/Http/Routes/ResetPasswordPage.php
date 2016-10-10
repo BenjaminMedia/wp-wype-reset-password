@@ -171,9 +171,10 @@ class ResetPasswordPage
             )
         );
 
-        $response = $client->post('/', $args);
+        $response = $client->get('/', $args);
 
-        if(isset($response->IsValid) && $response->IsValid) {
+        $parsedResponse = json_decode($response->getBody());
+        if(isset($parsedResponse->IsValid) && $parsedResponse->IsValid) {
             return true;
         }
 

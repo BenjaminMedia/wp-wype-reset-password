@@ -131,7 +131,7 @@ class ResetPasswordPage
             )
         );
 
-        $response = $client->post('/', $args);
+        $response = $client->get('/', $args);
 
         return true;
     }

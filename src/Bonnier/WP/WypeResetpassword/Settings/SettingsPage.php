@@ -9,6 +9,7 @@ class SettingsPage
     const SETTINGS_KEY = 'bp_wype_resetpassword_settings';
     const SETTINGS_GROUP = 'bp_wype_resetpassword_settings_group';
     const SETTINGS_SECTION = 'bp_wype_resetpassword_settings_section';
+    const SUBSCRIBER_REDUCED_PRICE_SETTINGS_SECTION = 'bp_wype_subscriber_reduced_price_settings_section';
     const SETTINGS_PAGE = 'bp_wype_resetpassword_settings_page';
     const API_ENDPOINT_FALLBACK = '';
     const NOTICE_PREFIX = 'Bonnier Wype Resetpassword:';
@@ -17,62 +18,107 @@ class SettingsPage
         'email_service_key' => [
             'type' => 'text',
             'name' => 'Api Key',
+            'section' => self::SETTINGS_SECTION
         ],
         'bp_language' => [
             'type' => 'text',
-            'name' => 'BP Language (la)'
+            'name' => 'BP Language (la)',
+            'section' => self::SETTINGS_SECTION
         ],
         'wype_reset_url' => [
             'type' => 'text',
-            'name' => 'Full Wype Reset Url'
+            'name' => 'Full Wype Reset Url',
+            'section' => self::SETTINGS_SECTION
         ],
         'wype_support_mail' => [
             'type' => 'text',
-            'name' => 'Wype Mail'
+            'name' => 'Wype Mail',
+            'section' => self::SETTINGS_SECTION
         ],
         'wype_reset_mail_subject' => [
             'type' => 'text',
-            'name' => 'Mail Subject'
+            'name' => 'Mail Subject',
+            'section' => self::SETTINGS_SECTION
         ],
         'wype_reset_mail_body' => [
             'type' => 'text',
-            'name' => 'Mail Body'
+            'name' => 'Mail Body',
+            'section' => self::SETTINGS_SECTION
         ],
         'wype_text_request_reset_link' => [
             'type' => 'text',
-            'name' => 'Request reset headline text'
+            'name' => 'Request reset headline text',
+            'section' => self::SETTINGS_SECTION
         ],
         'wype_text_request_reset_link_button' => [
             'type' => 'text',
-            'name' => 'Request link button text'
+            'name' => 'Request link button text',
+            'section' => self::SETTINGS_SECTION
         ],
         'text_if_in_system_mail_sent' => [
             'type' => 'text',
-            'name' => 'Mail sent if user in system text'
+            'name' => 'Mail sent if user in system text',
+            'section' => self::SETTINGS_SECTION
         ],
         'text_new_password' => [
             'type' => 'text',
-            'name' => 'New password page title'
+            'name' => 'New password page title',
+            'section' => self::SETTINGS_SECTION
         ],
         'text_submit_new_password_button' => [
             'type' => 'text',
-            'name' => 'New password page button text'
+            'name' => 'New password page button text',
+            'section' => self::SETTINGS_SECTION
         ],
         'text_password_resat' => [
             'type' => 'text',
-            'name' => 'Password was resat text'
+            'name' => 'Password was resat text',
+            'section' => self::SETTINGS_SECTION
         ],
         'text_email_address_placeholder' => [
             'type' => 'text',
-            'name' => 'Email Address Input Placeholder'
+            'name' => 'Email Address Input Placeholder',
+            'section' => self::SETTINGS_SECTION
         ],
         'text_password_placeholder' => [
             'type' => 'text',
-            'name' => 'Password Input Placeholder'
+            'name' => 'Password Input Placeholder',
+            'section' => self::SETTINGS_SECTION
         ],
         'wype_page_title' => [
             'type' => 'text',
-            'name' => 'Page Title'
+            'name' => 'Page Title',
+            'section' => self::SETTINGS_SECTION
+        ],
+        'wype_subscriber_reduced_price_page_title' => [
+            'type' => 'text',
+            'name' => 'Page Title',
+            'section' => self::SUBSCRIBER_REDUCED_PRICE_SETTINGS_SECTION
+        ],
+        'subscriber_text_form_title' => [
+            'type' => 'text',
+            'name' => 'Form Title',
+            'section' => self::SUBSCRIBER_REDUCED_PRICE_SETTINGS_SECTION
+        ],
+        'subscriber_text_form_user_input_placeholder' => [
+            'type' => 'text',
+            'name' => 'User input placeholder',
+            'section' => self::SUBSCRIBER_REDUCED_PRICE_SETTINGS_SECTION
+        ],
+        'subscriber_text_form_postal_input_placeholder' => [
+            'type' => 'text',
+            'name' => 'Postal code input placeholder',
+            'section' => self::SUBSCRIBER_REDUCED_PRICE_SETTINGS_SECTION
+        ],
+        'subscriber_text_form_submit_placeholder' => [
+            'type' => 'text',
+            'name' => 'Submit btn placeholder',
+            'section' => self::SUBSCRIBER_REDUCED_PRICE_SETTINGS_SECTION
+        ],
+        'subscriber_text_invalid_form_input_error' => [
+            'type' => 'text',
+            'name' => 'Submit btn placeholder',
+            'section' => self::SUBSCRIBER_REDUCED_PRICE_SETTINGS_SECTION
         ],
     ];
 
@@ -157,13 +203,20 @@ class SettingsPage
             self::SETTINGS_PAGE // Page
         );
 
+        add_settings_section(
+            self::SUBSCRIBER_REDUCED_PRICE_SETTINGS_SECTION, // ID
+            'Bonnier Wype Subscriber Reduced Price Settings', // Title
+            array($this, 'print_section_info'), // Callback
+            self::SETTINGS_PAGE // Page
+        );
+
         foreach ($this->settingsFields as $settingsKey => $settingField) {
             add_settings_field(
                 $settingsKey, // ID
                 $settingField['name'], // Title
                 array($this, $settingsKey), // Callback
                 self::SETTINGS_PAGE, // Page
-                self::SETTINGS_SECTION // Section
+                $settingField['section'] // Section
             );
         }
     }

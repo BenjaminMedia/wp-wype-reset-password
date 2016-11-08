@@ -2,14 +2,11 @@
 
 namespace Bonnier\WP\WypeResetpassword\Http\Routes;
 
-
 use Bonnier\WP\WypeResetpassword\Http\Client;
 use Bonnier\WP\WypeResetpassword\Plugin;
 
-
-class ResetPasswordPage
+class ResetPasswordPage extends BasePageRoute
 {
-
     const PAGE_URI = '/wype-reset-password';
     const PAGE_FILE = 'resetpassword.php';
 
@@ -18,38 +15,6 @@ class ResetPasswordPage
         'tdc' => 'BP_TDC',
         'telmore' => 'BP_TELMOR',
     ];
-
-    /**
-     * @var SettingsPage Instance of settings.
-     */
-    protected $plugin;
-
-    /**
-     * ResetPasswordPage constructor.
-     * @param Plugin $plugin
-     */
-    public function __construct(Plugin $plugin)
-    {
-        $this->plugin = $plugin;
-        add_action('init', [$this, 'register_page'] );
-    }
-
-    public function register_page() {
-
-        add_action( 'template_redirect', function() {
-
-            if ( strtok($_SERVER['REQUEST_URI'], '?') === self::PAGE_URI ) {
-
-                // Prevent WordPress returning 404 when loading the page
-                header("HTTP/1.1 200 OK");
-
-                add_filter( 'template_include', function() {
-                    return $this->plugin->page_dir . self::PAGE_FILE;
-                });
-            }
-
-        });
-    }
 
     public static function hasChangedPassword() {
         if(isset($_POST['password']) && !empty($_POST['password'])) {

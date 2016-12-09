@@ -3,6 +3,7 @@
 namespace Bonnier\WP\WypeResetpassword\Http\Routes;
 
 use Bonnier\WP\WypeResetpassword\Plugin;
+use Bonnier\WP\WypeResetpassword\Settings\SettingsPage;
 
 class BasePageRoute
 {
@@ -15,10 +16,6 @@ class BasePageRoute
      */
     protected $plugin;
 
-    /**
-     * ResetPasswordPage constructor.
-     * @param Plugin $plugin
-     */
     public function __construct(Plugin $plugin)
     {
         $this->plugin = $plugin;

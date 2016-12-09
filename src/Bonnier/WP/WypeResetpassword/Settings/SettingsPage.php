@@ -117,7 +117,12 @@ class SettingsPage
         ],
         'subscriber_text_invalid_form_input_error' => [
             'type' => 'text',
-            'name' => 'Submit btn placeholder',
+            'name' => 'Submit input error',
+            'section' => self::SUBSCRIBER_REDUCED_PRICE_SETTINGS_SECTION
+        ],
+        'subscriber_valid_redirect_url' => [
+            'type' => 'text',
+            'name' => 'Redirect url for valid subscribers DK',
             'section' => self::SUBSCRIBER_REDUCED_PRICE_SETTINGS_SECTION
         ],
     ];

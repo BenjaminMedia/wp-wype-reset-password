@@ -6,22 +6,26 @@ use Bonnier\WP\WypeResetpassword\Http\Client;
 
 class BmdValidateLoginService extends Client
 {
-    const BMD_ENDPOINT = 'http://api2.bm-data.com/services/bm400/1.3/SubscriptionAPI.asmx/';
-    const LOGIN_PATH = 'GetLoginResponse2';
+    const BMD_ENDPOINT = 'https://order.bm-data.com';
+    const LOGIN_PATH = '/';
 
     public function __construct()
     {
         parent::__construct(['base_uri' => self::BMD_ENDPOINT]);
     }
 
-    public function validateSubscription($emailOrSubscriptionNumber, $postalCode) {
-        return $this->get(self::LOGIN_PATH, [
+    public function validateSubscription($emailOrSubscriptionNumber) {
+        $response = $this->get(self::LOGIN_PATH, [
             'body'=> [
-                'db' => 'DK',
-                'subscriptionNr' => $emailOrSubscriptionNumber,
-                'postalNr' => $postalCode,
-                'serviceID' => 'BP_ALL'
-            ]
+                'type' => 'status',
+                'format' => 'JSON',
+                'cnr' => $emailOrSubscriptionNumber, // subscription number
+                'sid' => 'BP_CCI',
+                'la' => 'SE'
+            ],
         ]);
+
+        $responseBody = json_decode($response->getBody());
+        return $responseBody->IsValid;
     }
 }

@@ -14,6 +14,7 @@ use Bonnier\WP\WypeResetpassword\Assets\Scripts;
 use Bonnier\WP\WypeResetpassword\Db\DbSetup;
 use Bonnier\WP\WypeResetpassword\Http\Routes\OauthLoginRoute;
 use Bonnier\WP\WypeResetpassword\Http\Routes\ResetPasswordPage;
+use Bonnier\WP\WypeResetpassword\Http\Routes\SubscriberReducedPricePage;
 use Bonnier\WP\WypeResetpassword\Http\Routes\UserUpdateCallbackRoute;
 use Bonnier\WP\WypeResetpassword\Settings\SettingsPage;
 
@@ -50,6 +51,7 @@ class Plugin
     public $settings;
 
     private $resetPasswordPage;
+    private $subscriberReducedPicePage;
 
     /**
      * @var string Filename of this class.
@@ -94,6 +96,7 @@ class Plugin
 
         $this->settings = new SettingsPage();
         $this->resetPasswordPage = new ResetPasswordPage($this);
+        $this->resetPasswordPage = new SubscriberReducedPricePage($this);
     }
 
     private function boostrap() {

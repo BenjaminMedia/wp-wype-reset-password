@@ -122,7 +122,7 @@ class SettingsPage
         ],
         'subscriber_valid_redirect_url' => [
             'type' => 'text',
-            'name' => 'Redirect url for valid subscribers DK',
+            'name' => 'Redirect url for valid subscribers',
             'section' => self::SUBSCRIBER_REDUCED_PRICE_SETTINGS_SECTION
         ],
     ];

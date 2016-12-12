@@ -2,11 +2,9 @@
 
 namespace Bonnier\WP\WypeResetpassword\Http\Routes;
 
-use Bonnier\WP\WypeResetpassword\Http\Client;
 use Bonnier\WP\WypeResetpassword\Plugin;
 use Bonnier\WP\WypeResetpassword\Services\BmdEmailFromSubscriptionService;
 use Bonnier\WP\WypeResetpassword\Services\BmdValidateLoginService;
-use Bonnier\WP\WypeResetpassword\Settings\SettingsPage;
 
 class SubscriberReducedPricePage extends BasePageRoute
 {
@@ -24,8 +22,8 @@ class SubscriberReducedPricePage extends BasePageRoute
             $emailOrSubNumber = $_POST['email_or_subscription_number'];
             $subscriptionNumber = $emailOrSubNumber;
 
-            $validationService = new BmdValidateLoginService();
             $dataService = new BmdEmailFromSubscriptionService();
+            $validationService = new BmdValidateLoginService();
 
             // If it's a email, get the subscription number instead
             if(filter_var($emailOrSubNumber, FILTER_VALIDATE_EMAIL))
@@ -35,30 +33,37 @@ class SubscriberReducedPricePage extends BasePageRoute
             }
 
             // Let's validate!
-            $isValid = $validationService->validateSubscription($subscriptionNumber);
+            $isValid = $validationService->validateSubscription($subscriptionNumber, SubscriberReducedPricePage::getLocale());
 
             if(!$isValid)
             {
                 return false;
             }
 
+            // Checks if the URL is set from settings
+            if(!Plugin::instance()->settings->get_setting_value('subscriber_valid_redirect_url'))
+            {
+                return false;
+            }
 
-            // redirect
-            //wp_redirect();
-
-            die(var_dump(Plugin::instance()->settings->get_setting_value('subscriber_valid_redirect_url')));
-
+            // Redirect to the success page
+            wp_redirect(add_query_arg([
+                'subscription_number' => $subscriptionNumber,
+                'zipcode' => $postal_code,
+            ], Plugin::instance()->settings->get_setting_value('subscriber_valid_redirect_url')));
+            ob_end_flush();
+            exit;
         }
 
         return false;
     }
 
     /***
-     * Gives you the current locale language
+     * Gives you the current locale domain
      *
      * @return string
      */
-    private function getLocale()
+    private static function getLocale()
     {
         return substr($_SERVER['HTTP_HOST'],strripos($_SERVER['HTTP_HOST'], '.') + 1);
     }

@@ -18,6 +18,7 @@ class BasePageRoute
 
     public function __construct(Plugin $plugin)
     {
+        ob_start();
         $this->plugin = $plugin;
         add_action('init', [$this, 'register_page'] );
     }

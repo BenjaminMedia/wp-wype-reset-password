@@ -14,18 +14,20 @@ class BmdValidateLoginService extends Client
         parent::__construct(['base_uri' => self::BMD_ENDPOINT]);
     }
 
-    public function validateSubscription($emailOrSubscriptionNumber) {
+    public function validateSubscription($subscriptionNumber, $local)
+    {
         $response = $this->get(self::LOGIN_PATH, [
             'body'=> [
                 'type' => 'status',
                 'format' => 'JSON',
-                'cnr' => $emailOrSubscriptionNumber, // subscription number
+                'cnr' => $subscriptionNumber, // subscription number
                 'sid' => 'BP_CCI',
-                'la' => 'SE'
+                'la' => $local,
             ],
         ]);
 
         $responseBody = json_decode($response->getBody());
+
         return $responseBody->IsValid;
     }
 }

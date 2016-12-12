@@ -18,7 +18,7 @@ class SubscriberReducedPricePage extends BasePageRoute
             && !empty($_POST['email_or_subscription_number'])
             && !empty($_POST['postal_code']))
         {
-            $postal_code = $_POST['postal_code'];
+            $postalCode = $_POST['postal_code'];
             $emailOrSubNumber = $_POST['email_or_subscription_number'];
             $subscriptionNumber = $emailOrSubNumber;
 
@@ -49,7 +49,7 @@ class SubscriberReducedPricePage extends BasePageRoute
             // Redirect to the success page
             wp_redirect(add_query_arg([
                 'subscription_number' => $subscriptionNumber,
-                'zipcode' => $postal_code,
+                'zipcode' => $postalCode,
             ], Plugin::instance()->settings->get_setting_value('subscriber_valid_redirect_url')));
             ob_end_flush();
             exit;

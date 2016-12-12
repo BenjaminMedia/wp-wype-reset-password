@@ -4,7 +4,7 @@ namespace Bonnier\WP\WypeResetpassword\Services;
 
 use Bonnier\WP\WypeResetpassword\Http\Client;
 
-class BmdEmailFromSubscriptionService extends Client
+class BmdEmailToSubscriptionService extends Client
 {
     const BMD_ENDPOINT = 'http://api2.bm-data.com';
     const SUB_LIST = '/services/bm400/1.3/ContactAPI.asmx/GetSubscriptionListFromEmail';

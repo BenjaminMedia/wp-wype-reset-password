@@ -3,7 +3,7 @@
 namespace Bonnier\WP\WypeResetpassword\Http\Routes;
 
 use Bonnier\WP\WypeResetpassword\Plugin;
-use Bonnier\WP\WypeResetpassword\Services\BmdEmailFromSubscriptionService;
+use Bonnier\WP\WypeResetpassword\Services\BmdEmailToSubscriptionService;
 use Bonnier\WP\WypeResetpassword\Services\BmdValidateLoginService;
 
 class SubscriberReducedPricePage extends BasePageRoute
@@ -22,7 +22,7 @@ class SubscriberReducedPricePage extends BasePageRoute
             $emailOrSubNumber = $_POST['email_or_subscription_number'];
             $subscriptionNumber = $emailOrSubNumber;
 
-            $dataService = new BmdEmailFromSubscriptionService();
+            $dataService = new BmdEmailToSubscriptionService();
             $validationService = new BmdValidateLoginService();
 
             // If it's a email, get the subscription number instead

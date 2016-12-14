@@ -7,11 +7,11 @@ include __DIR__ . '/partials/head.php';
 
 if(!Plugin::instance()->settings->get_setting_value('subscriber_valid_redirect_url'))
 {
-    wp_redirect( home_url() );
+    wp_redirect(home_url());
+    ob_end_flush();
     exit;
 }
 
 if(!SubscriberReducedPricePage::isAuthenticated()) {
     include __DIR__ . '/partials/subscripber-reduced-price/authenticateSubscriber.php';
 }
-

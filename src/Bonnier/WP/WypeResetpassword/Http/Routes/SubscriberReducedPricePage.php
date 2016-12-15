@@ -42,11 +42,12 @@ class SubscriberReducedPricePage extends BasePageRoute
 
             // Checks if the URL is set from settings
             if(!Plugin::instance()->settings->get_setting_value('subscriber_valid_redirect_url_bt')
-                && !Plugin::instance()->settings->get_setting_value('subscriber_valid_redirect_url_bp'))
+                || !Plugin::instance()->settings->get_setting_value('subscriber_valid_redirect_url_bp'))
             {
                 return false;
             }
 
+            // Is it a BT or BP customer? Find out and redirect them
             switch ($returnData['Prefix'])
             {
                 case 'BT':

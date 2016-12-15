@@ -33,24 +33,24 @@ class SubscriberReducedPricePage extends BasePageRoute
             }
 
             // Let's validate!
-            $isValid = $validationService->validateSubscription($subscriptionNumber, SubscriberReducedPricePage::getLocale());
+            $responseBody = $validationService->validateSubscription($subscriptionNumber, SubscriberReducedPricePage::getLocale());
 
-            if(!$isValid)
+            if(!$responseBody->IsValid)
             {
                 return false;
             }
 
             // Checks if the URL is set from settings
-            if(!Plugin::instance()->settings->get_setting_value('subscriber_valid_redirect_url'))
+            if(!Plugin::instance()->settings->get_setting_value('subscriber_valid_redirect_url_bt')
+                || !Plugin::instance()->settings->get_setting_value('subscriber_valid_redirect_url_bp'))
             {
                 return false;
             }
 
-            // Redirect to the success page
             wp_redirect(add_query_arg([
                 'subscription_number' => $subscriptionNumber,
                 'zipcode' => $postalCode,
-            ], Plugin::instance()->settings->get_setting_value('subscriber_valid_redirect_url')));
+            ], Plugin::instance()->settings->get_setting_value('subscriber_valid_redirect_url_'. strtolower($responseBody->Prefix))));
             ob_end_flush();
             exit;
         }

@@ -26,8 +26,6 @@ class BmdValidateLoginService extends Client
             ],
         ]);
 
-        $responseBody = json_decode($response->getBody());
-
-        return $responseBody->IsValid;
+        return json_decode($response->getBody());
     }
 }

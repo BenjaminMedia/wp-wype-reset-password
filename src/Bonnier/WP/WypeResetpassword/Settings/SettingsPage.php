@@ -120,9 +120,14 @@ class SettingsPage
             'name' => 'Submit input error',
             'section' => self::SUBSCRIBER_REDUCED_PRICE_SETTINGS_SECTION
         ],
-        'subscriber_valid_redirect_url' => [
+        'subscriber_valid_redirect_url_bp' => [
             'type' => 'text',
-            'name' => 'Redirect url for valid subscribers',
+            'name' => 'Redirect url for valid subscribers for BP',
+            'section' => self::SUBSCRIBER_REDUCED_PRICE_SETTINGS_SECTION
+        ],
+        'subscriber_valid_redirect_url_bt' => [
+            'type' => 'text',
+            'name' => 'Redirect url for valid subscribers for BT',
             'section' => self::SUBSCRIBER_REDUCED_PRICE_SETTINGS_SECTION
         ],
     ];

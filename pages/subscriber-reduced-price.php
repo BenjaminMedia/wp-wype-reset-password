@@ -5,7 +5,8 @@ use Bonnier\WP\WypeResetpassword\Http\Routes\SubscriberReducedPricePage;
 
 include __DIR__ . '/partials/head.php';
 
-if(!Plugin::instance()->settings->get_setting_value('subscriber_valid_redirect_url'))
+if(!Plugin::instance()->settings->get_setting_value('subscriber_valid_redirect_url_bt')
+    || !Plugin::instance()->settings->get_setting_value('subscriber_valid_redirect_url_bp'))
 {
     wp_redirect(home_url());
     ob_end_flush();

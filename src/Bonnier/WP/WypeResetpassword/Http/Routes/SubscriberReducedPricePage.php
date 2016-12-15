@@ -33,9 +33,9 @@ class SubscriberReducedPricePage extends BasePageRoute
             }
 
             // Let's validate!
-            $returnData = $validationService->validateSubscription($subscriptionNumber, SubscriberReducedPricePage::getLocale());
+            $responseBody = $validationService->validateSubscription($subscriptionNumber, SubscriberReducedPricePage::getLocale());
 
-            if(!$returnData['IsValid'])
+            if(!$responseBody->IsValid)
             {
                 return false;
             }
@@ -47,24 +47,12 @@ class SubscriberReducedPricePage extends BasePageRoute
                 return false;
             }
 
-            // Is it a BT or BP customer? Find out and redirect them
-            switch ($returnData['Prefix'])
-            {
-                case 'BT':
-                    wp_redirect(add_query_arg([
-                        'subscription_number' => $subscriptionNumber,
-                        'zipcode' => $postalCode,
-                    ], Plugin::instance()->settings->get_setting_value('subscriber_valid_redirect_url_bt')));
-                    ob_end_flush();
-                    exit;
-                case 'BP':
-                    wp_redirect(add_query_arg([
-                        'subscription_number' => $subscriptionNumber,
-                        'zipcode' => $postalCode,
-                    ], Plugin::instance()->settings->get_setting_value('subscriber_valid_redirect_url_bp')));
-                    ob_end_flush();
-                    exit;
-            }
+            wp_redirect(add_query_arg([
+                'subscription_number' => $subscriptionNumber,
+                'zipcode' => $postalCode,
+            ], Plugin::instance()->settings->get_setting_value('subscriber_valid_redirect_url_'. strtolower($responseBody->Prefix))));
+            ob_end_flush();
+            exit;
         }
 
         return false;

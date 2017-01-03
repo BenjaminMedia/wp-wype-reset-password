@@ -14,10 +14,10 @@ class SubscriberReducedPricePage extends BasePageRoute
     public static $inputError = false;
 
     public static function isAuthenticated() {
-        if(isset($_POST['email_or_subscription_number'], $_POST['postal_code'])
+        if (isset($_POST['email_or_subscription_number'], $_POST['postal_code'])
             && !empty($_POST['email_or_subscription_number'])
-            && !empty($_POST['postal_code']))
-        {
+            && !empty($_POST['postal_code'])) {
+
             $postalCode = trim($_POST['postal_code']);
             $emailOrSubNumber = trim($_POST['email_or_subscription_number']);
             $subscriptionNumber = $emailOrSubNumber;
@@ -26,8 +26,7 @@ class SubscriberReducedPricePage extends BasePageRoute
             $validationService = new BmdValidateLoginService();
 
             // If it's a email, get the subscription number instead
-            if(filter_var($emailOrSubNumber, FILTER_VALIDATE_EMAIL))
-            {
+            if (filter_var($emailOrSubNumber, FILTER_VALIDATE_EMAIL)) {
                 // Grap the response from the request and find the SubscriptionNr
                 $subscriptionNumber = $dataService->subscriptionIdFromEmail($emailOrSubNumber);
             }
@@ -35,16 +34,14 @@ class SubscriberReducedPricePage extends BasePageRoute
             // Let's validate!
             $responseBody = $validationService->validateSubscription($subscriptionNumber, SubscriberReducedPricePage::getLocale());
 
-            if(!$responseBody->IsValid)
-            {
+            if (!$responseBody->IsValid) {
                 self::$inputError = true;
                 return false;
             }
 
             // Checks if the URL is set from settings
             if(!Plugin::instance()->settings->get_setting_value('subscriber_valid_redirect_url_bt')
-                || !Plugin::instance()->settings->get_setting_value('subscriber_valid_redirect_url_bp'))
-            {
+                || !Plugin::instance()->settings->get_setting_value('subscriber_valid_redirect_url_bp')) {
                 self::$inputError = true;
                 return false;
             }
@@ -57,7 +54,6 @@ class SubscriberReducedPricePage extends BasePageRoute
             exit;
         }
 
-        self::$inputError = true;
         return false;
     }
 

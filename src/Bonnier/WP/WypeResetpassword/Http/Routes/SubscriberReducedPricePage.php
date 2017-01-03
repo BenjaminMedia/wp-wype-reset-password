@@ -18,8 +18,8 @@ class SubscriberReducedPricePage extends BasePageRoute
             && !empty($_POST['email_or_subscription_number'])
             && !empty($_POST['postal_code']))
         {
-            $postalCode = $_POST['postal_code'];
-            $emailOrSubNumber = $_POST['email_or_subscription_number'];
+            $postalCode = trim($_POST['postal_code']);
+            $emailOrSubNumber = trim($_POST['email_or_subscription_number']);
             $subscriptionNumber = $emailOrSubNumber;
 
             $dataService = new BmdEmailToSubscriptionService();
@@ -37,6 +37,7 @@ class SubscriberReducedPricePage extends BasePageRoute
 
             if(!$responseBody->IsValid)
             {
+                self::$inputError = true;
                 return false;
             }
 
@@ -44,6 +45,7 @@ class SubscriberReducedPricePage extends BasePageRoute
             if(!Plugin::instance()->settings->get_setting_value('subscriber_valid_redirect_url_bt')
                 || !Plugin::instance()->settings->get_setting_value('subscriber_valid_redirect_url_bp'))
             {
+                self::$inputError = true;
                 return false;
             }
 
@@ -55,6 +57,7 @@ class SubscriberReducedPricePage extends BasePageRoute
             exit;
         }
 
+        self::$inputError = true;
         return false;
     }
 

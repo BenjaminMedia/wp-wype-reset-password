@@ -23,7 +23,7 @@ class Client
 
     public function get($path, Array $options = [])
     {
-        $request = wp_remote_get($this->buildUri($path, $options['body']), array_merge(self::DEFAULT_OPTIONS, $options));
+        $request = wp_remote_get($this->buildUri($path), array_merge(self::DEFAULT_OPTIONS, $options));
 
         return new HttpResponse($request);
     }

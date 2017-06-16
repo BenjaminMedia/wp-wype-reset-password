@@ -12,7 +12,7 @@ class ResetPasswordPage extends BasePageRoute
 
     protected static $providers = [
         'plenti' => 'BP_PLENTI',
-        'tdc' => 'BP_TDC',
+        'tre' => 'BP_TRE',
         'telmore' => 'BP_TELMOR',
     ];
 

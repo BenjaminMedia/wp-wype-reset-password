@@ -14,7 +14,7 @@ echo "
                     </br>
                     
                     <label class=\"checkbox-inline\"><input name=\"provider\" type=\"radio\" value=\"plenti\"> Plenti</label>
-                    <label class=\"checkbox-inline\"><input name=\"provider\" type=\"radio\" value=\"tdc\"> TDC</label>
+                    <label class=\"checkbox-inline\"><input name=\"provider\" type=\"radio\" value=\"tre\"> Tre</label>
                     
                     </br></br>
                     

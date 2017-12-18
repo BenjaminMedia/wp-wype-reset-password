@@ -47,7 +47,7 @@ class SubscriberReducedPricePage extends BasePageRoute
             }
 
             wp_redirect(add_query_arg([
-                'subscription_number' => $subscriptionNumber,
+                'prennr' => $subscriptionNumber,
                 'zipcode' => $postalCode,
             ], Plugin::instance()->settings->get_setting_value('subscriber_valid_redirect_url_'. strtolower($responseBody->Prefix))));
             ob_end_flush();

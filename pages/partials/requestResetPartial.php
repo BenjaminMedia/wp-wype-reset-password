@@ -13,7 +13,7 @@ echo "
                     
                     </br>
                     
-                    <label class=\"checkbox-inline\"><input name=\"provider\" type=\"radio\" value=\"plenti\"> Plenti</label>
+                    <label class=\"checkbox-inline\"><input name=\"provider\" type=\"radio\" value=\"plenti\"> Telmore</label>
                     <label class=\"checkbox-inline\"><input name=\"provider\" type=\"radio\" value=\"3\"> 3</label>
                     
                     </br></br>
